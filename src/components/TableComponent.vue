@@ -132,68 +132,70 @@ export default {
             </button>
         </div>
         <!-- FILTER COMPONENT -->
-        <div v-if="showFilter" class="flex space-x-[16px] px-[29px]">
-            <div class="w-full">
-                <p class="text-[#111827] text-base font-bold mb-2 capitalize">Name</p>
-                <input placeholder="name" v-model="name"
-                    class="h-[56px] w-full bg-[#FAFAFA] px-4 outline-none rounded-xl placeholder:text-[#A0AEC0] text-[#111216] text-base font-medium" />
-            </div>
-            <div class="w-full">
-                <p class="text-[#111827] text-base font-bold mb-2 capitalize">Amount</p>
-                <input type="number" placeholder="amount" v-model="amount"
-                    class="h-[56px] w-full bg-[#FAFAFA] px-4 outline-none rounded-xl placeholder:text-[#A0AEC0] text-[#111216] text-base font-medium" />
-            </div>
-            <div class="w-full">
-                <p class="text-[#111827] text-base font-bold mb-2 capitalize">
-                    User's status
-                </p>
-                <div ref="dropdown1" class="aselect" :data-value="userStatus" :data-list="userStatusList">
-                    <div class="selector h-[56px] rounded-xl w-full px-4 bg-[#FAFAFA]" @click="toggleUserStatus()">
-                        <div class="label text-[#111216] text-base font-medium">
-                            <span>{{ userStatus }}</span>
-                        </div>
-                        <div class="arrow" :class="{ expanded: showUserStatusMenu }">
-                            <ArrowDownIcon />
-                        </div>
-                        <div :class="{ hidden: !showUserStatusMenu, showUserStatusMenu }">
-                            <ul class="p-2">
-                                <li :key="item.color" :style="{ color: item.color }"
-                                    class="p-4 font-medium rounded-xl flex items-center"
-                                    :class="{ current: item.name === userStatus }" v-for="item in userStatusList"
-                                    @click="selectUserStatus(item)">
-                                    <p class="w-2 h-2 mr-2 bg-red-700 rounded-full"
-                                        :style="{ backgroundColor: item.color }"></p>
-                                    {{ item.name }}
-                                </li>
-                            </ul>
+        <div class="overflow-auto">
+            <div v-if="showFilter" class="flex space-x-[16px] w-[80rem] xl:w-full px-[29px]">
+                <div class="w-full">
+                    <p class="text-[#111827] text-base font-bold mb-2 capitalize">Name</p>
+                    <input placeholder="name" v-model="name"
+                        class="h-[56px] w-full bg-[#FAFAFA] px-4 outline-none rounded-xl placeholder:text-[#A0AEC0] text-[#111216] text-base font-medium" />
+                </div>
+                <div class="w-full">
+                    <p class="text-[#111827] text-base font-bold mb-2 capitalize">Amount</p>
+                    <input type="number" placeholder="amount" v-model="amount"
+                        class="h-[56px] w-full bg-[#FAFAFA] px-4 outline-none rounded-xl placeholder:text-[#A0AEC0] text-[#111216] text-base font-medium" />
+                </div>
+                <div class="w-full">
+                    <p class="text-[#111827] text-base font-bold mb-2 capitalize">
+                        User's status
+                    </p>
+                    <div ref="dropdown1" class="aselect" :data-value="userStatus" :data-list="userStatusList">
+                        <div class="selector h-[56px] rounded-xl w-full px-4 bg-[#FAFAFA]" @click="toggleUserStatus()">
+                            <div class="label text-[#111216] text-base font-medium">
+                                <span>{{ userStatus }}</span>
+                            </div>
+                            <div class="arrow" :class="{ expanded: showUserStatusMenu }">
+                                <ArrowDownIcon />
+                            </div>
+                            <div :class="{ hidden: !showUserStatusMenu, showUserStatusMenu }">
+                                <ul class="p-2">
+                                    <li :key="item.color" :style="{ color: item.color }"
+                                        class="p-4 font-medium rounded-xl flex items-center"
+                                        :class="{ current: item.name === userStatus }" v-for="item in userStatusList"
+                                        @click="selectUserStatus(item)">
+                                        <p class="w-2 h-2 mr-2 bg-red-700 rounded-full"
+                                            :style="{ backgroundColor: item.color }"></p>
+                                        {{ item.name }}
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="w-full">
-                <p class="text-[#111827] text-base font-bold mb-2 capitalize">
-                    Payment status
-                </p>
-                <div ref="dropdown2" class="aselect" :data-value="paymentStatus" :data-list="statusList">
-                    <div class="selector h-[56px] rounded-xl w-full px-4 bg-[#FAFAFA]"
-                        @click.stop="togglePaymentStatus()">
-                        <div class="label text-[#111216] text-base font-medium">
-                            <span>{{ paymentStatus }}</span>
-                        </div>
-                        <div class="arrow" :class="{ expanded: showPaymentStatusMenu }">
-                            <ArrowDownIcon />
-                        </div>
-                        <div :class="{ hidden: !showPaymentStatusMenu, showPaymentStatusMenu }">
-                            <ul class="p-2">
-                                <li :key="item.color" :style="{ color: item.color }"
-                                    class="p-4 font-medium rounded-xl flex items-center"
-                                    :class="{ current: item.name === paymentStatus }" v-for="item in statusList"
-                                    @click="selectPaymentStatus(item)">
-                                    <p class="w-2 h-2 mr-2 bg-red-700 rounded-full"
-                                        :style="{ backgroundColor: item.color }"></p>
-                                    {{ item.name }}
-                                </li>
-                            </ul>
+                <div class="w-full">
+                    <p class="text-[#111827] text-base font-bold mb-2 capitalize">
+                        Payment status
+                    </p>
+                    <div ref="dropdown2" class="aselect" :data-value="paymentStatus" :data-list="statusList">
+                        <div class="selector h-[56px] rounded-xl w-full px-4 bg-[#FAFAFA]"
+                            @click.stop="togglePaymentStatus()">
+                            <div class="label text-[#111216] text-base font-medium">
+                                <span>{{ paymentStatus }}</span>
+                            </div>
+                            <div class="arrow" :class="{ expanded: showPaymentStatusMenu }">
+                                <ArrowDownIcon />
+                            </div>
+                            <div :class="{ hidden: !showPaymentStatusMenu, showPaymentStatusMenu }">
+                                <ul class="p-2">
+                                    <li :key="item.color" :style="{ color: item.color }"
+                                        class="p-4 font-medium rounded-xl flex items-center"
+                                        :class="{ current: item.name === paymentStatus }" v-for="item in statusList"
+                                        @click="selectPaymentStatus(item)">
+                                        <p class="w-2 h-2 mr-2 bg-red-700 rounded-full"
+                                            :style="{ backgroundColor: item.color }"></p>
+                                        {{ item.name }}
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -282,8 +284,8 @@ export default {
                 </tbody>
             </table>
             <!-- PAGINATION -->
-            <div class="flex items-center justify-between border-gray-200 bg-white px-7 py-8 sm:px-6">
-                <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+            <div class="flex items-center justify-between border-gray-200 px-7 py-8 sm:px-6">
+                <div class="flex flex-nowrap space-x-10 sm:space-x-0 sm:flex-1 sm:items-center sm:justify-between">
                     <div class="flex items-center">
                         <p class="text-sm mr-4 text-[#718096] text-nowrap">Show result:</p>
                         <div class="w-[68px]">
@@ -315,7 +317,7 @@ export default {
                     </div>
                     <div v-if="transactions.length >= lowerLimit">
                         <PaginationComponent :total-items="pageSize" :current-page="currentPage" :per-page="limit"
-                            @page-changed="handlePageChange" :go-button="false" styled="centered" />
+                            @page-changed="handlePageChange" :go-button="false" styled="simple" />
                     </div>
                 </div>
             </div>

@@ -134,7 +134,7 @@ export default {
 
 <template>
   <NavBar />
-  <main class="px-[48px]">
+  <main class="px-[28px] sm:px-[48px]">
     <TabComponent :selectPaymentStatus="selectPaymentStatus" :makePayment="makePayment"/>
     <TableComponent
       :transactions="transactions"
