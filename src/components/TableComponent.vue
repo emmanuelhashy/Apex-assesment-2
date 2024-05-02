@@ -132,8 +132,8 @@ export default {
             </button>
         </div>
         <!-- FILTER COMPONENT -->
-        <div class="overflow-auto">
-            <div v-if="showFilter" class="flex space-x-[16px] w-[80rem] xl:w-full px-[29px]">
+        <div class="">
+            <div v-if="showFilter" class="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:space-x-[16px] w-full px-[29px]">
                 <div class="w-full">
                     <p class="text-[#111827] text-base font-bold mb-2 capitalize">Name</p>
                     <input placeholder="name" v-model="name"

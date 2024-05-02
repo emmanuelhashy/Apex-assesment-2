@@ -86,7 +86,6 @@ export default {
     },
     makePayment() {
       if(this.store.length > 0) {
-        //Make payment
         this.processing = true;
       axios
         .post(
@@ -135,7 +134,7 @@ export default {
 <template>
   <NavBar />
   <main class="px-[28px] sm:px-[48px]">
-    <TabComponent :selectPaymentStatus="selectPaymentStatus" :makePayment="makePayment"/>
+    <TabComponent :selectPaymentStatus="selectPaymentStatus" :processing="processing" :makePayment="makePayment"/>
     <TableComponent
       :transactions="transactions"
       :loading="loading"
