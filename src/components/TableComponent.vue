@@ -28,7 +28,7 @@ export default {
     data() {
         return {
             name: "",
-            amount: 0,
+            amount: "",
             showFilter: true,
             statusList: [
                 { name: "All", color: "#111827" },
@@ -36,7 +36,7 @@ export default {
                 { name: "Unpaid", color: "#D4A701" },
                 { name: "Overdue", color: "#FD6A6A" },
             ],
-            userStatus: "All",
+            userStatus: "Active",
             userStatusList: [
                 { name: "All", color: "#111827" },
                 { name: "Active", color: "#0CAF60" },
@@ -51,7 +51,9 @@ export default {
     },
     computed: {
         filteredTransactions() {
-            return this.transactions.filter(obj => (obj.amount === this.amount) || (obj.user.name.toLowerCase().includes(this.name.toLowerCase())));
+            return this.transactions.filter(obj => {
+               return (obj.user.name.toString().toLowerCase().includes(this.name.toString().toLowerCase())) && (obj.amount.toString().includes(this.amount.toString())) && (obj.user.status.toString().toLowerCase().includes(this.userStatus.toString().toLowerCase()))
+            });
         },
     },
     mounted() {
@@ -141,7 +143,7 @@ export default {
                 </div>
                 <div class="w-full">
                     <p class="text-[#111827] text-base font-bold mb-2 capitalize">Amount</p>
-                    <input type="number" placeholder="amount" v-model="amount"
+                    <input type="text" placeholder="amount" v-model="amount"
                         class="h-[56px] w-full bg-[#FAFAFA] px-4 outline-none rounded-xl placeholder:text-[#A0AEC0] text-[#111216] text-base font-medium" />
                 </div>
                 <div class="w-full">
